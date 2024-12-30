@@ -59,8 +59,8 @@ body {
     width: 80%;
     max-width: 500px;
     font-size: 1.2rem;
-    color: #9b9292;
-    background: #275c3dcc;
+    color: #c8c4c4;
+    background: linear-gradient(135deg, #6a488a, #4b2d58);
     padding: 10px;
     border-radius: 10px;
     overflow-y: auto;
@@ -71,8 +71,18 @@ body {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    border-top: 2px solid #ddd;
+    border-bottom: 2px solid #ddd;
 }
 
 .splits li {
-    margin: 5px 0;
+    padding: 10px;
+    background: linear-gradient(135deg, #6a488a, #4b2d58); /* Matches the splits area */
+    border-bottom: 1px solid #ccc; /* Adds a visible separator */
+    text-align: center;
+    margin: 0; /* Ensures partitions are close */
+}
+
+.splits li:nth-child(odd) {
+    opacity: 0.9; /* Slightly different opacity for alternating rows */
 }
