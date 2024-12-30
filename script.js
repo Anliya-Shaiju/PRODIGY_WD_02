@@ -14,8 +14,10 @@ function formatTime(ms) {
     let hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
     let minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
     let seconds = String(totalSeconds % 60).padStart(2, '0');
-    return `${hours}:${minutes}:${seconds}`;
+    let milliseconds = String(ms % 1000).padStart(3, '0');
+    return `${hours}:${minutes}:${seconds}.${milliseconds}`;
 }
+
 
 function updateTimer() {
     elapsedTime = Date.now() - startTime;
@@ -38,9 +40,12 @@ splitButton.addEventListener('click', () => {
     if (isRunning) {
         let splitTime = document.createElement('li');
         splitTime.textContent = formatTime(elapsedTime);
+        splitTime.style.border = '1px solid #000'; // Adds a highlight border dynamically
         splitsContainer.appendChild(splitTime);
+        splitTime.scrollIntoView({ behavior: 'smooth' }); // Scrolls to the new split if overflowing
     }
 });
+
 
 resetButton.addEventListener('click', () => {
     clearInterval(intervalId);
