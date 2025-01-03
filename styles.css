@@ -1,3 +1,4 @@
+/* General Page Style */
 body {
     display: flex;
     flex-direction: column;
@@ -9,6 +10,7 @@ body {
     background: linear-gradient(135deg, #7c4c85, #fad0c4);
 }
 
+/* Timer Display */
 .timer {
     font-size: 5rem;
     font-weight: bold;
@@ -16,11 +18,13 @@ body {
     margin-bottom: 50px;
 }
 
+/* Button Container */
 .button-container {
     display: flex;
     gap: 20px;
 }
 
+/* Circle Buttons */
 .circle-button {
     width: 100px;
     height: 100px;
@@ -54,6 +58,7 @@ body {
     color: white;
 }
 
+/* Splits Area */
 .splits {
     margin-top: 30px;
     width: 80%;
@@ -85,4 +90,23 @@ body {
 
 .splits li:nth-child(odd) {
     opacity: 0.9; /* Slightly different opacity for alternating rows */
+}
+
+/* Export Splits Button */
+.export-splits {
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #3b3b98, #00a8ff);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.export-splits:hover {
+    background: linear-gradient(135deg, #192a56, #273c75);
+    transform: scale(1.05);
 }
