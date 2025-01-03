@@ -2,6 +2,7 @@ let timerDisplay = document.querySelector('.timer');
 let startButton = document.querySelector('.start');
 let splitButton = document.querySelector('.split');
 let resetButton = document.querySelector('.reset');
+let exportButton = document.querySelector('.export-splits'); // Export button for splits
 let splitsContainer = document.querySelector('.splits ul');
 
 let startTime = 0;
@@ -17,7 +18,6 @@ function formatTime(ms) {
     let milliseconds = String(ms % 1000).padStart(3, '0');
     return `${hours}:${minutes}:${seconds}.${milliseconds}`;
 }
-
 
 function updateTimer() {
     elapsedTime = Date.now() - startTime;
@@ -46,13 +46,37 @@ splitButton.addEventListener('click', () => {
     }
 });
 
-
 resetButton.addEventListener('click', () => {
     clearInterval(intervalId);
     startTime = 0;
     elapsedTime = 0;
-    timerDisplay.textContent = '00:00:00';
+    timerDisplay.textContent = '00:00:00.000';
     splitsContainer.innerHTML = '';
     startButton.textContent = 'Start';
     isRunning = false;
+});
+
+exportButton.addEventListener('click', () => {
+    const splits = splitsContainer.querySelectorAll('li');
+    if (splits.length === 0) {
+        alert('No splits to export!');
+        return;
+    }
+    let content = 'Splits:\n\n';
+    splits.forEach((split, index) => {
+        content += `Split ${index + 1}: ${split.textContent}\n`;
+    });
+
+    // Create a Blob for the text content
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+
+    // Create a temporary link to download the file
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'splits.txt';
+    link.click();
+
+    // Clean up the URL object
+    URL.revokeObjectURL(url);
 });
